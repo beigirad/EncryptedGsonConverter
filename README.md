@@ -8,6 +8,43 @@ Used [Encryption][1] library for encryption output and input.
 
 Uses instead of default gson-convertor if you don't need to encryption.
 
+# How Works?
+### Receive (ResponseBody)
+#### #1. Plain text received from server:
+```
+PRpqRXhYkTxmAK0Ndh/Fg2IAV+FSiaMrQx0IgXTLdmojfsF70SMPLyUYE2XLGCWZgTKYISe+RSDFDqEwZ35N+g==
+```
+##### #2. Decrypt
+```
+{
+	"first-name":"Farhad",
+	"last-name":"Beigirad"
+}
+```
+#### #3. Deserialize
+```
+Person class
+```
+### Send (RequestBody)
+#### #1. Java Object
+```
+Person person = new Person( "Farhad" , "Beigirad" );
+```
+#### #2. Serialize
+```
+{
+	"first-name":"Farhad",
+	"last-name":"Beigirad"
+}
+```
+#### #3. Output text for send to server:
+```
+PRpqRXhYkTxmAK0Ndh/Fg2IAV+FSiaMrQx0IgXTLdmojfsF70SMPLyUYE2XLGCWZgTKYISe+RSDFDqEwZ35N+g==
+```
+
+
+
+
 # Setup
 #### Step #1. Add the JitPack repository to root build.gradle file:
 
