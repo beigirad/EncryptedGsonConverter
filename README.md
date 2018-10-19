@@ -62,7 +62,7 @@ allprojects {
 ```groovy
 dependencies {
 
-    implementation 'com.github.beigirad:EncryptedGsonConverter:1.0.1'
+    implementation 'com.github.beigirad:EncryptedGsonConverter:{LATEST_VERSION}'
     
 }
 ```
