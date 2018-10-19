@@ -1,9 +1,11 @@
 package ir.beigirad.sample;
 
-import com.facebook.stetho.okhttp3.StethoInterceptor;
+
+import android.util.Log;
 
 import ir.beigirad.encryptedgsonconverter.GsonEncryptConverterFactory;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import se.simbio.encryption.Encryption;
 
@@ -23,9 +25,16 @@ public class APIProvider {
         // for more detail visit https://github.com/simbiose/Encryption
         Encryption encryption = Encryption.getDefault("MyKey", "MySalt", new byte[16]);
 
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                Log.i("Network log", message);
+            }
+        });
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new StethoInterceptor())
+                .addInterceptor(loggingInterceptor)
                 .build();
 
         retrofit = new Retrofit.Builder()

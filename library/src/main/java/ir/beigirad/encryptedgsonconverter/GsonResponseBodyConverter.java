@@ -39,7 +39,7 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         if (encryption != null) {
             String decrypt;
             try {
-                decrypt = encryption.decrypt(value.string());
+                decrypt = encryption.decrypt(new String(value.bytes()));
             } catch (NoSuchAlgorithmException e) {
                 throw new EncryptionException(e.getMessage());
             } catch (InvalidKeySpecException e) {
