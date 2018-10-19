@@ -3,11 +3,11 @@ package ir.beigirad.sample;
 
 import android.util.Log;
 
+import ir.beigirad.encryptedgsonconverter.Encryption;
 import ir.beigirad.encryptedgsonconverter.GsonEncryptConverterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import se.simbio.encryption.Encryption;
 
 /**
  * Created by farhad-mbp on 3/30/18.
@@ -22,8 +22,8 @@ public class APIProvider {
 
     public APIProvider() {
 
-        // for more detail visit https://github.com/simbiose/Encryption
-        Encryption encryption = Encryption.getDefault("MyKey", "MySalt", new byte[16]);
+        // used this thread for encryption https://stackoverflow.com/questions/15554296
+        Encryption encryption = Encryption.getDefault("MyKey","InitVector");
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override

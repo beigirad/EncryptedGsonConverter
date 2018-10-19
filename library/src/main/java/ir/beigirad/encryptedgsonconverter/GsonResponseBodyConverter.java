@@ -11,7 +11,6 @@ import java.io.StringReader;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -19,7 +18,6 @@ import javax.crypto.NoSuchPaddingException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
-import se.simbio.encryption.Encryption;
 
 final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final Gson gson;
@@ -41,8 +39,6 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
             try {
                 decrypt = encryption.decrypt(new String(value.bytes()));
             } catch (NoSuchAlgorithmException e) {
-                throw new EncryptionException(e.getMessage());
-            } catch (InvalidKeySpecException e) {
                 throw new EncryptionException(e.getMessage());
             } catch (NoSuchPaddingException e) {
                 throw new EncryptionException(e.getMessage());

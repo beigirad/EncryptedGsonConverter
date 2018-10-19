@@ -11,7 +11,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import se.simbio.encryption.Encryption;
 
 public final class GsonEncryptConverterFactory extends Converter.Factory {
     private final Gson gson;

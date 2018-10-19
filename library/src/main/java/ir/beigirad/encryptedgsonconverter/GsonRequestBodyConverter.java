@@ -11,7 +11,6 @@ import java.nio.charset.Charset;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -21,7 +20,6 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.Buffer;
 import retrofit2.Converter;
-import se.simbio.encryption.Encryption;
 
 final class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
     private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
@@ -50,8 +48,6 @@ final class GsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
             try {
                 encrypted = encryption.encrypt(out);
             } catch (NoSuchAlgorithmException e) {
-                throw new EncryptionException(e.getMessage());
-            } catch (InvalidKeySpecException e) {
                 throw new EncryptionException(e.getMessage());
             } catch (NoSuchPaddingException e) {
                 throw new EncryptionException(e.getMessage());
