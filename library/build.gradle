@@ -3,13 +3,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.beigirad'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 10001
-        versionName "1.0.1"
+        targetSdkVersion 28
+        versionCode 10002
+        versionName "1.0.2"
 
     }
 
@@ -24,7 +24,7 @@ android {
 
 dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
-    api "com.google.code.gson:gson:2.8.2"
+    api "com.google.code.gson:gson:2.8.5"
     api "com.github.simbiose:Encryption:2.0.1"
 }
 allprojects {
